@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth0 } from "@auth0/auth0-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -31,11 +30,10 @@ type Props = {
 };
 
 const UserProfileForm = ({ onSave, isLoading }: Props) => {
-  const { user } = useAuth0();
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: user?.email,
+      email: "",
       name: "",
       addressLine1: "",
       city: "",
